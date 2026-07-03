@@ -1,3 +1,5 @@
+import { inject } from '@vercel/analytics'
+
 function initStickyHeader() {
   const header = document.querySelector('.header')
   if (!header) return
@@ -40,9 +42,14 @@ function initFooterYear() {
   if (el) el.textContent = new Date().getFullYear()
 }
 
+function initAnalytics() {
+  inject()
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader()
   initMobileMenu()
   initSmoothScroll()
   initFooterYear()
+  initAnalytics()
 })
