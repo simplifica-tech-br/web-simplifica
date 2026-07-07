@@ -9,6 +9,7 @@
 | JavaScript (ES Modules) | ES2020+ | Comportamentos interativos |
 | Vite | 5.x | Dev server e build de produção |
 | Node.js | 20 LTS | Runtime do Vite (apenas em desenvolvimento) |
+| Playwright | ^1.48 | Testes E2E funcionais e de responsividade (local, sem CI) |
 
 ---
 
@@ -51,6 +52,12 @@ O código fonte permanece idêntico a HTML/CSS/JS puro — Vite não impõe abst
 
 ---
 
+### Playwright
+
+Adotado especificamente para cobrir o que o Lighthouse não cobre: comportamento funcional (CTAs, navegação) e responsividade real entre dispositivos (mobile, tablet, desktop). Acessibilidade continua sendo responsabilidade exclusiva do Lighthouse. Diretrizes completas em [quality-guide.md](./quality-guide.md).
+
+---
+
 ## O que foi excluído e por quê
 
 | Categoria | Excluído | Motivo |
@@ -61,4 +68,4 @@ O código fonte permanece idêntico a HTML/CSS/JS puro — Vite não impõe abst
 | Gerador estático | 11ty, Astro, Hugo | Overkill para one-page com conteúdo fixo |
 | TypeScript | — | Projeto pequeno e simples; JS puro é suficiente e mais ágil |
 | State management | — | Não há estado de aplicação neste site |
-| Testing framework | — | Site estático; validação é visual + PageSpeed |
+| CI/CD | — | Testes e verificação de performance rodam localmente antes do push; ver [quality-guide.md](./quality-guide.md) |

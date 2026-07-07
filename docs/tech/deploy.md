@@ -67,15 +67,18 @@ Não há CI/CD separado — o push na `main` dispara o deploy automaticamente na
 
 ---
 
-## Verificação de performance antes do deploy
+## Verificação de qualidade antes do deploy
 
 Antes de fazer push de alterações significativas:
 
 1. `npm run build && npm run preview`
-2. Abrir `http://localhost:4173` no Chrome
-3. DevTools → Lighthouse → Mobile → gerar relatório
-4. Metas a atingir:
+2. `npm run test:e2e` — valida funcional e responsividade (mobile/tablet/desktop). Detalhes em [quality-guide.md](./quality-guide.md).
+3. Abrir `http://localhost:4173` no Chrome
+4. DevTools → Lighthouse → Mobile → gerar relatório
+5. Metas a atingir:
    - FCP < 1,5s
    - LCP < 2,5s
    - Performance score ≥ 85
    - Tamanho total da página < 1 MB
+
+Não há CI/CD rodando esses testes automaticamente — é um gate manual do desenvolvedor.

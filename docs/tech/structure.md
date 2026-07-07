@@ -6,6 +6,7 @@ web-simplifica/
 ├── index.html              ← página única com todas as seções
 ├── package.json            ← scripts e dependência do Vite
 ├── vite.config.js          ← configuração mínima do Vite
+├── playwright.config.js    ← configuração dos testes E2E (Playwright)
 │
 ├── src/
 │   ├── style.css           ← estilos globais e CSS Custom Properties
@@ -15,6 +16,8 @@ web-simplifica/
 │       ├── images/         ← imagens em formato WebP (lazy-loaded)
 │       └── icons/          ← ícones SVG inline ou como arquivo .svg
 │
+├── e2e/                    ← testes E2E com Playwright (functional/responsive)
+│
 └── docs/
     ├── product/
     │   └── PRD_Site_Institucional.md
@@ -22,7 +25,8 @@ web-simplifica/
         ├── stack.md
         ├── structure.md    ← este arquivo
         ├── conventions.md
-        └── deploy.md
+        ├── deploy.md
+        └── quality-guide.md
 ```
 
 ---
@@ -69,6 +73,12 @@ Todas as imagens devem ser:
 ### `src/assets/icons/`
 Ícones SVG para os cards de produto e automação. Preferir SVG inline no HTML para evitar requisições extras. Arquivos `.svg` separados apenas quando reutilizados em múltiplos lugares.
 
+### `e2e/`
+Testes E2E com Playwright, organizados em `functional/` e `responsive/`. Detalhes em [quality-guide.md](./quality-guide.md).
+
+### `playwright.config.js`
+Configuração dos `projects` do Playwright (Mobile Chrome, Mobile Safari, Tablet, Desktop Chrome) usada para validar responsividade real entre dispositivos.
+
 ### `vite.config.js`
 Configuração mínima — apenas o necessário:
 
@@ -84,17 +94,20 @@ export default defineConfig({
 ```
 
 ### `package.json`
-Scripts e única dependência de desenvolvimento:
+Scripts e dependências de desenvolvimento (Vite + Playwright):
 
 ```json
 {
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "devDependencies": {
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "@playwright/test": "^1.48.0"
   }
 }
 ```

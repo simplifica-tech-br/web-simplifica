@@ -36,9 +36,9 @@
 
       <nav class="nav" aria-label="Navegação principal">
         <ul class="nav__list">
-          <li><a href="#aplicativos" class="nav__link">Aplicativos</a></li>
           <li><a href="#automacoes" class="nav__link">Automações com IA</a></li>
           <li><a href="#sites" class="nav__link">Sites</a></li>
+          <li><a href="#aplicativos" class="nav__link">Aplicativos</a></li>
           <li><a href="#contato" class="nav__link">Contato</a></li>
         </ul>
       </nav>
@@ -66,58 +66,249 @@
             Fale com a gente no WhatsApp
           </a>
         </div>
-        <div class="hero__visual" aria-hidden="true">
-          <div class="hero__illustration"></div>
-        </div>
-      </div>
-    </section>
+        <div class="hero__visual">
+          <div class="hero-carousel" id="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Exemplos de soluções entregues">
+            <div class="hero-carousel__stage">
 
-    <!-- APLICATIVOS E SISTEMAS -->
-    <section id="aplicativos" class="section" aria-labelledby="aplicativos-title">
-      <div class="container">
-        <div class="section__header">
-          <h2 id="aplicativos-title" class="section__title">Aplicativos e Sistemas para Empresas</h2>
-          <p class="section__subtitle">Desenvolvemos sob medida para o seu negócio — do MVP ao sistema completo.</p>
-        </div>
+              <!-- Slide 0: Atendimento WhatsApp -->
+              <div class="hero-carousel__slide is-active" data-i="0">
+                <span class="hero-carousel__label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.11.546 4.093 1.504 5.818L0 24l6.335-1.469A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.63-.516-5.13-1.412l-.368-.218-3.814.884.952-3.675-.24-.38A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                  Atendimento WhatsApp
+                </span>
+                <div class="mockup-phone">
+                  <div class="mockup-phone__notch"></div>
+                  <div class="mockup-phone__screen">
+                    <div class="mockup-whatsapp__top">
+                      <div class="mockup-whatsapp__avatar">ST</div>
+                      <div>
+                        <div class="mockup-whatsapp__name">Simplifica Bot</div>
+                        <div class="mockup-whatsapp__status">online</div>
+                      </div>
+                    </div>
+                    <div class="mockup-whatsapp__chat">
+                      <div class="mockup-whatsapp__msg is-in">Oi! Vi o anúncio no Instagram. Quais planos vocês têm?<div class="mockup-whatsapp__time">10:31</div></div>
+                      <div class="mockup-whatsapp__msg is-out">Olá, Maria! Que bom ter você aqui 😊<br><br>Temos 3 planos:<div class="mockup-whatsapp__time">10:31 <span class="mockup-whatsapp__check">✓✓</span></div></div>
+                      <div class="mockup-whatsapp__msg is-out"><b>1. Básico</b> — R$ 49/mês<br><b>2. Pro</b> — R$ 99/mês<br><b>3. Premium</b> — R$ 199/mês<br><br>Qual te interessa?<div class="mockup-whatsapp__time">10:31 <span class="mockup-whatsapp__check">✓✓</span></div></div>
+                      <div class="mockup-whatsapp__msg is-in">Quero o Pro!<div class="mockup-whatsapp__time">10:33</div></div>
+                      <div class="mockup-whatsapp__msg is-out">Ótima escolha! ✅<br><br>Gerando seu link de pagamento...<br><br>💳 <b>pag.simplifica.com/pro</b><br><br>Prontinho! Qualquer dúvida, só chamar.<div class="mockup-whatsapp__time">10:33 <span class="mockup-whatsapp__check">✓✓</span></div></div>
+                    </div>
+                    <div class="mockup-whatsapp__bar">
+                      <div class="mockup-whatsapp__field">Mensagem</div>
+                      <div class="mockup-whatsapp__send"><svg viewBox="0 0 24 24" width="13" height="13" fill="#fff" aria-hidden="true"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <div class="grid grid--4">
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              <!-- Slide 1: Resposta automática a e-mails -->
+              <div class="hero-carousel__slide" data-i="1">
+                <span class="hero-carousel__label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  Resposta automática a e-mails
+                </span>
+                <div class="mockup-email">
+                  <div class="mockup-email__topbar">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Caixa de Entrada — SimplificaMail
+                  </div>
+                  <div class="mockup-email__list">
+                    <div class="mockup-email__row is-unread">
+                      <div class="mockup-email__dot is-blue"></div>
+                      <div class="mockup-email__from">João Mendes</div>
+                      <div class="mockup-email__subject">Orçamento site</div>
+                      <div class="mockup-email__preview">— Preciso de um orçamento para...</div>
+                      <div class="mockup-email__tag is-auto">✓ Auto-resposta</div>
+                      <div class="mockup-email__time">09:14</div>
+                    </div>
+                    <div class="mockup-email__row is-unread">
+                      <div class="mockup-email__dot is-blue"></div>
+                      <div class="mockup-email__from">Ana Costa</div>
+                      <div class="mockup-email__subject">Dúvida sobre plano Pro</div>
+                      <div class="mockup-email__preview">— Gostaria de saber se o plano...</div>
+                      <div class="mockup-email__tag is-auto">✓ Auto-resposta</div>
+                      <div class="mockup-email__time">09:02</div>
+                    </div>
+                    <div class="mockup-email__row">
+                      <div class="mockup-email__dot is-green"></div>
+                      <div class="mockup-email__from">Carlos Lima</div>
+                      <div class="mockup-email__subject">Re: Proposta comercial</div>
+                      <div class="mockup-email__preview">— Aceito a proposta, quando...</div>
+                      <div class="mockup-email__tag is-pend">⚡ Escalado</div>
+                      <div class="mockup-email__time">08:45</div>
+                    </div>
+                    <div class="mockup-email__row">
+                      <div class="mockup-email__dot is-gray"></div>
+                      <div class="mockup-email__from">Marta Souza</div>
+                      <div class="mockup-email__subject">Suporte técnico #482</div>
+                      <div class="mockup-email__preview">— O sistema está apresentando...</div>
+                      <div class="mockup-email__tag is-sent">↗ Encaminhado</div>
+                      <div class="mockup-email__time">08:30</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2: Qualificação de leads -->
+              <div class="hero-carousel__slide" data-i="2">
+                <span class="hero-carousel__label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                  Qualificação de leads
+                </span>
+                <div class="mockup-lead">
+                  <div class="mockup-lead__header">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3z"/></svg>
+                    Funil de leads — Simplifica CRM
+                  </div>
+                  <div class="mockup-lead__body">
+                    <div class="mockup-lead__funnel">
+                      <div class="mockup-lead__step is-new"><div class="mockup-lead__num">24</div><div><div class="mockup-lead__lbl">Novos contatos</div><div class="mockup-lead__desc">Guiados por perguntas da IA</div></div></div>
+                      <div class="mockup-lead__step is-qual"><div class="mockup-lead__num">15</div><div><div class="mockup-lead__lbl">Qualificados</div><div class="mockup-lead__desc">Classificados automaticamente</div></div></div>
+                      <div class="mockup-lead__step is-ready"><div class="mockup-lead__num">8</div><div><div class="mockup-lead__lbl">Prontos para venda</div><div class="mockup-lead__desc">Encaminhados ao time comercial</div></div></div>
+                    </div>
+                    <div class="mockup-lead__card"><div class="mockup-lead__avatar" style="background:#7c3aed">RM</div><div class="mockup-lead__info"><div class="mockup-lead__name">Roberto Matos</div><div class="mockup-lead__meta">E-commerce · Orçamento alto</div></div><div class="mockup-lead__score is-hot">92</div></div>
+                    <div class="mockup-lead__card"><div class="mockup-lead__avatar" style="background:#0284c7">FS</div><div class="mockup-lead__info"><div class="mockup-lead__name">Fernanda Silva</div><div class="mockup-lead__meta">Clínica odontológica</div></div><div class="mockup-lead__score is-hot">85</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3: Agendamento automático -->
+              <div class="hero-carousel__slide" data-i="3">
+                <span class="hero-carousel__label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+                  Agendamento automático
+                </span>
+                <div class="mockup-phone">
+                  <div class="mockup-phone__notch"></div>
+                  <div class="mockup-phone__screen">
+                    <div class="mockup-cal__header">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="#fff" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                      Agenda — Julho 2026
+                    </div>
+                    <div class="mockup-cal__grid">
+                      <div class="mockup-cal__day-h">D</div><div class="mockup-cal__day-h">S</div><div class="mockup-cal__day-h">T</div><div class="mockup-cal__day-h">Q</div><div class="mockup-cal__day-h">Q</div><div class="mockup-cal__day-h">S</div><div class="mockup-cal__day-h">S</div>
+                      <div class="mockup-cal__day is-off">28</div><div class="mockup-cal__day is-off">29</div><div class="mockup-cal__day is-off">30</div><div class="mockup-cal__day">1</div><div class="mockup-cal__day">2</div><div class="mockup-cal__day has-event">3</div><div class="mockup-cal__day">4</div>
+                      <div class="mockup-cal__day">5</div><div class="mockup-cal__day is-today">6</div><div class="mockup-cal__day has-event">7</div><div class="mockup-cal__day has-event">8</div><div class="mockup-cal__day">9</div><div class="mockup-cal__day has-event">10</div><div class="mockup-cal__day">11</div>
+                    </div>
+                    <div class="mockup-cal__slots">
+                      <div class="mockup-cal__slot is-booked"><div class="mockup-cal__slot-time">09:00</div><div class="mockup-cal__slot-name">Ana Costa — Corte + Escova</div><div class="mockup-cal__slot-badge is-confirmed">Confirmado</div></div>
+                      <div class="mockup-cal__slot is-booked"><div class="mockup-cal__slot-time">10:30</div><div class="mockup-cal__slot-name">Maria Lima — Manicure</div><div class="mockup-cal__slot-badge is-auto">Via WhatsApp</div></div>
+                      <div class="mockup-cal__slot is-open"><div class="mockup-cal__slot-time">13:00</div><div class="mockup-cal__slot-name">Horário disponível</div><div class="mockup-cal__slot-badge is-avail">Livre</div></div>
+                      <div class="mockup-cal__slot is-booked"><div class="mockup-cal__slot-time">14:30</div><div class="mockup-cal__slot-name">Carla Dias — Coloração</div><div class="mockup-cal__slot-badge is-confirmed">Confirmado</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 4: App de estoque -->
+              <div class="hero-carousel__slide" data-i="4">
+                <span class="hero-carousel__label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                  Aplicativo de estoque
+                </span>
+                <div class="mockup-phone">
+                  <div class="mockup-phone__notch"></div>
+                  <div class="mockup-phone__screen">
+                    <div class="mockup-app__top"><span>📦 MeuEstoque</span><span class="mockup-app__user">Maria Silva</span></div>
+                    <div class="mockup-app__list">
+                      <div class="mockup-app__row">
+                        <div class="mockup-app__row-img"><img src="/src/assets/images/produto-tenis-runner.webp" width="34" height="34" alt="Tênis Runner X" loading="lazy"></div>
+                        <div class="mockup-app__row-info"><div class="mockup-app__row-title">Tênis Runner X</div><div class="mockup-app__row-sub">SKU: TRX-001 · Há 2h</div></div>
+                        <div class="mockup-app__row-qty">48 un</div>
+                      </div>
+                      <div class="mockup-app__row">
+                        <div class="mockup-app__row-img"><img src="/src/assets/images/produto-camiseta-dryfit.webp" width="34" height="34" alt="Camiseta Dry Fit" loading="lazy"></div>
+                        <div class="mockup-app__row-info"><div class="mockup-app__row-title">Camiseta Dry Fit</div><div class="mockup-app__row-sub">SKU: CDF-042 · Há 5h</div></div>
+                        <div class="mockup-app__row-qty">126 un</div>
+                      </div>
+                      <div class="mockup-app__row">
+                        <div class="mockup-app__row-img"><img src="/src/assets/images/produto-bolsa-couro.webp" width="34" height="34" alt="Bolsa Couro Mini" loading="lazy"></div>
+                        <div class="mockup-app__row-info"><div class="mockup-app__row-title">Bolsa Couro Mini</div><div class="mockup-app__row-sub">SKU: BCM-018 · Há 1d</div></div>
+                        <div class="mockup-app__row-qty is-low">3 un</div>
+                      </div>
+                      <div class="mockup-app__row">
+                        <div class="mockup-app__row-img"><img src="/src/assets/images/produto-bone-trucker.webp" width="34" height="34" alt="Boné Trucker" loading="lazy"></div>
+                        <div class="mockup-app__row-info"><div class="mockup-app__row-title">Boné Trucker</div><div class="mockup-app__row-sub">SKU: BNT-007 · Há 3h</div></div>
+                        <div class="mockup-app__row-qty">67 un</div>
+                      </div>
+                      <div class="mockup-app__row">
+                        <div class="mockup-app__row-img"><img src="/src/assets/images/produto-chinelo-comfort.webp" width="34" height="34" alt="Chinelo Comfort" loading="lazy"></div>
+                        <div class="mockup-app__row-info"><div class="mockup-app__row-title">Chinelo Comfort</div><div class="mockup-app__row-sub">SKU: CHC-033 · Há 6h</div></div>
+                        <div class="mockup-app__row-qty">215 un</div>
+                      </div>
+                    </div>
+                    <div class="mockup-app__nav">
+                      <div class="mockup-app__tab is-on">Estoque</div>
+                      <div class="mockup-app__tab">Vendas</div>
+                      <div class="mockup-app__tab">Alertas</div>
+                      <div class="mockup-app__tab">Config</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 5: E-commerce -->
+              <div class="hero-carousel__slide" data-i="5">
+                <span class="hero-carousel__label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96z"/></svg>
+                  Loja virtual (e-commerce)
+                </span>
+                <div class="mockup-browser">
+                  <div class="mockup-browser__bar">
+                    <div class="mockup-browser__dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+                    <div class="mockup-browser__url"><span class="mockup-browser__lock">🔒</span> modafitstore.com.br</div>
+                  </div>
+                  <div class="mockup-browser__body">
+                    <div class="mockup-browser__hero">
+                      <div class="mockup-browser__hero-bg" style="background-image:url('/src/assets/images/hero-loja-moda.webp')"></div>
+                      <div class="mockup-browser__hero-content">
+                        <h4>Moda Fit Store</h4>
+                        <p>Vista-se bem. Sinta-se melhor.</p>
+                        <span class="mockup-browser__hero-btn">Ver coleção nova →</span>
+                      </div>
+                    </div>
+                    <div class="mockup-browser__prods">
+                      <div class="mockup-browser__prod"><div class="mockup-browser__prod-img"><img src="/src/assets/images/produto-tenis-runner.webp" width="90" height="70" alt="Tênis Runner X" loading="lazy"></div><div class="mockup-browser__prod-info"><div class="mockup-browser__prod-name">Tênis Runner X</div><div class="mockup-browser__prod-price">R$ 289,90</div></div></div>
+                      <div class="mockup-browser__prod"><div class="mockup-browser__prod-img"><img src="/src/assets/images/produto-camiseta-dryfit.webp" width="90" height="70" alt="Camiseta Dry Fit" loading="lazy"></div><div class="mockup-browser__prod-info"><div class="mockup-browser__prod-name">Camiseta Dry Fit</div><div class="mockup-browser__prod-price">R$ 79,90</div></div></div>
+                      <div class="mockup-browser__prod"><div class="mockup-browser__prod-img"><img src="/src/assets/images/produto-bolsa-couro.webp" width="90" height="70" alt="Bolsa Couro Mini" loading="lazy"></div><div class="mockup-browser__prod-info"><div class="mockup-browser__prod-name">Bolsa Couro Mini</div><div class="mockup-browser__prod-price">R$ 349,90</div></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 6: Relatórios automáticos -->
+              <div class="hero-carousel__slide" data-i="6">
+                <span class="hero-carousel__label">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                  Relatórios automáticos
+                </span>
+                <div class="mockup-dash">
+                  <div class="mockup-dash__head"><div class="mockup-dash__logo">ST</div><span>Simplifica Analytics</span><span class="mockup-dash__month">Jul 2026</span></div>
+                  <div class="mockup-dash__main">
+                    <div class="mockup-dash__title">Visão geral do mês</div>
+                    <div class="mockup-dash__cards">
+                      <div class="mockup-dash__card"><div class="mockup-dash__value">R$ 47k</div><div class="mockup-dash__lbl">Faturamento</div></div>
+                      <div class="mockup-dash__card"><div class="mockup-dash__value">1.284</div><div class="mockup-dash__lbl">Pedidos</div></div>
+                      <div class="mockup-dash__card"><div class="mockup-dash__value">89%</div><div class="mockup-dash__lbl">Satisfação</div></div>
+                    </div>
+                    <div class="mockup-dash__chart-label">Vendas por dia da semana</div>
+                    <div class="mockup-dash__chart" id="hero-carousel-chart"></div>
+                  </div>
+                </div>
+              </div>
+
             </div>
-            <h3 class="card__title">Loja Virtual</h3>
-            <p class="card__text">E-commerce completo com catálogo, carrinho e pagamento online.</p>
-          </article>
 
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <div class="hero-carousel__nav">
+              <button type="button" class="hero-carousel__arrow" id="hero-carousel-prev" aria-label="Slide anterior">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+              </button>
+              <div class="hero-carousel__pips" id="hero-carousel-pips"></div>
+              <button type="button" class="hero-carousel__arrow" id="hero-carousel-next" aria-label="Próximo slide">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+              </button>
             </div>
-            <h3 class="card__title">Sistema de Estoque</h3>
-            <p class="card__text">Controle de entrada e saída, relatórios e alertas de reposição.</p>
-          </article>
-
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 10h16M4 14h8m-8 4h4"/></svg>
-            </div>
-            <h3 class="card__title">Catálogo Digital</h3>
-            <p class="card__text">Catálogo interativo com atualização de produtos em tempo real.</p>
-          </article>
-
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-            </div>
-            <h3 class="card__title">Sistema de Pedidos</h3>
-            <p class="card__text">Gestão de pedidos, status de entrega e painel administrativo.</p>
-          </article>
-        </div>
-
-        <div class="section__cta">
-          <a href="https://wa.me/5511985452544?text=Quero+uma+solu%C3%A7%C3%A3o+para+minha+empresa." class="btn btn--primary" target="_blank" rel="noopener noreferrer">
-            Quero uma solução para minha empresa
-          </a>
+          </div>
         </div>
       </div>
     </section>
@@ -246,6 +437,56 @@
       </div>
     </section>
 
+    <!-- APLICATIVOS E SISTEMAS -->
+    <section id="aplicativos" class="section" aria-labelledby="aplicativos-title">
+      <div class="container">
+        <div class="section__header">
+          <h2 id="aplicativos-title" class="section__title">Aplicativos e Sistemas para Empresas</h2>
+          <p class="section__subtitle">Desenvolvemos sob medida para o seu negócio — do MVP ao sistema completo.</p>
+        </div>
+
+        <div class="grid grid--4">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="card__title">Loja Virtual</h3>
+            <p class="card__text">E-commerce completo com catálogo, carrinho e pagamento online.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            </div>
+            <h3 class="card__title">Sistema de Estoque</h3>
+            <p class="card__text">Controle de entrada e saída, relatórios e alertas de reposição.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 10h16M4 14h8m-8 4h4"/></svg>
+            </div>
+            <h3 class="card__title">Catálogo Digital</h3>
+            <p class="card__text">Catálogo interativo com atualização de produtos em tempo real.</p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            </div>
+            <h3 class="card__title">Sistema de Pedidos</h3>
+            <p class="card__text">Gestão de pedidos, status de entrega e painel administrativo.</p>
+          </article>
+        </div>
+
+        <div class="section__cta">
+          <a href="https://wa.me/5511985452544?text=Quero+uma+solu%C3%A7%C3%A3o+para+minha+empresa." class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+            Quero uma solução para minha empresa
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTATO -->
     <section id="contato" class="section section--alt" aria-labelledby="contato-title">
       <div class="container">
@@ -306,7 +547,6 @@
           <li><a href="#aplicativos">Aplicativos</a></li>
           <li><a href="#automacoes">Automações com IA</a></li>
           <li><a href="#sites">Sites</a></li>
-          <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
 

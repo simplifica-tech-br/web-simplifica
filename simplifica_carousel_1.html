@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simplifica Tec — Entregáveis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f5f4f0;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem}
+.wrap{max-width:700px;width:100%}
+.stage{position:relative;height:470px;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 8px 30px rgba(0,0,0,0.04)}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transform:translateX(40px);transition:opacity 0.5s ease,transform 0.5s ease}
+.slide.on{opacity:1;pointer-events:auto;transform:translateX(0)}
+.slide.exit{opacity:0;transform:translateX(-40px)}
+.label{position:absolute;top:14px;left:14px;background:rgba(0,0,0,0.65);color:#fff;font-size:11px;padding:4px 12px;border-radius:20px;z-index:2;backdrop-filter:blur(6px);display:flex;align-items:center;gap:5px}
+.label svg{width:14px;height:14px;fill:currentColor}
+
+/* PHONE */
+.phone{width:225px;min-width:225px;height:405px;border-radius:28px;background:#fff;border:2.5px solid #1a1a1a;position:relative;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.12);flex-shrink:0}
+.phone-notch{width:90px;height:22px;background:#1a1a1a;border-radius:0 0 14px 14px;margin:0 auto;position:relative;z-index:3}
+.phone-screen{height:calc(100% - 22px);display:flex;flex-direction:column;overflow:hidden}
+
+/* WHATSAPP */
+.wa-top{background:#075e54;color:#fff;padding:8px 10px;display:flex;align-items:center;gap:8px}
+.wa-avatar{width:28px;height:28px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff}
+.wa-name{font-size:11px;font-weight:500}
+.wa-status{font-size:8px;opacity:0.8;font-weight:400}
+.wa-chat{flex:1;background:#ece5dd;padding:7px;display:flex;flex-direction:column;gap:4px;overflow:hidden}
+.wa-msg{max-width:88%;padding:5px 7px;border-radius:6px;font-size:9.5px;line-height:1.4;color:#111}
+.wa-msg b{font-weight:600}
+.wa-msg.in{background:#fff;align-self:flex-start;border-top-left-radius:0}
+.wa-msg.out{background:#d9fdd3;align-self:flex-end;border-top-right-radius:0}
+.wa-time{font-size:7px;color:#667781;text-align:right;margin-top:1px;display:flex;align-items:center;justify-content:flex-end;gap:2px}
+.wa-check{color:#53bdeb;font-size:8px}
+.wa-bar{background:#fff;padding:5px 8px;display:flex;align-items:center;gap:6px}
+.wa-field{flex:1;background:#f0f2f5;border-radius:20px;padding:4px 10px;font-size:9px;color:#667781}
+.wa-send{width:26px;height:26px;border-radius:50%;background:#075e54;display:flex;align-items:center;justify-content:center}
+.wa-send svg{width:13px;height:13px;fill:#fff}
+
+/* INFO */
+.info{max-width:240px;margin-left:1.75rem}
+.info h3{font-size:17px;font-weight:600;color:#1a1a1a;margin-bottom:5px}
+.info p{font-size:12px;color:#555;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.tag{font-size:9.5px;padding:3px 9px;border-radius:20px;font-weight:500}
+.tag.blue{background:#e6f1fb;color:#185fa5}
+.tag.green{background:#eaf3de;color:#3b6d11}
+.tag.coral{background:#faece7;color:#993c1d}
+.tag.purple{background:#eeedfe;color:#534ab7}
+.tag.teal{background:#e1f5ee;color:#0f6e56}
+
+/* EMAIL MOCKUP */
+.email-app{width:380px;border-radius:10px;overflow:hidden;background:#fff;border:1px solid #e0e0e0;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+.email-topbar{background:#1a73e8;color:#fff;padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500}
+.email-topbar svg{width:16px;height:16px;fill:#fff}
+.email-list{max-height:340px;overflow:hidden}
+.email-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:0.5px solid #f0f0f0;font-size:10px}
+.email-row.unread{background:#f2f6fc}
+.email-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.email-dot.blue{background:#1a73e8}
+.email-dot.green{background:#34a853}
+.email-dot.gray{background:#ccc}
+.email-from{width:90px;font-weight:500;color:#1a1a1a;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.email-subject{flex:1;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.email-preview{color:#999;margin-left:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.email-time{font-size:9px;color:#999;flex-shrink:0;width:40px;text-align:right}
+.email-tag{font-size:7.5px;padding:2px 6px;border-radius:10px;font-weight:500;flex-shrink:0}
+.email-tag.auto{background:#e8f5e9;color:#2e7d32}
+.email-tag.pend{background:#fff3e0;color:#e65100}
+.email-tag.sent{background:#e3f2fd;color:#1565c0}
+
+/* LEAD QUALIFICATION */
+.lead-panel{width:380px;border-radius:10px;overflow:hidden;background:#fff;border:1px solid #e0e0e0;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+.lead-header{background:#7c3aed;color:#fff;padding:10px 14px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:8px}
+.lead-header svg{width:16px;height:16px;fill:#fff}
+.lead-body{padding:14px}
+.lead-funnel{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.funnel-step{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;font-size:10px}
+.funnel-step .num{font-size:16px;font-weight:600;min-width:32px}
+.funnel-step .lbl{font-weight:500;color:#1a1a1a}
+.funnel-step .desc{font-size:8.5px;color:#777;margin-top:1px}
+.f-new{background:#f3e8ff}
+.f-new .num{color:#7c3aed}
+.f-qual{background:#e0f2fe}
+.f-qual .num{color:#0284c7}
+.f-ready{background:#dcfce7}
+.f-ready .num{color:#16a34a}
+.lead-card{border:0.5px solid #e5e7eb;border-radius:8px;padding:10px;display:flex;align-items:center;gap:10px}
+.lead-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0}
+.lead-info{flex:1}
+.lead-name{font-size:10px;font-weight:500;color:#1a1a1a}
+.lead-meta{font-size:8px;color:#999;margin-top:1px}
+.lead-score{font-size:14px;font-weight:600}
+.lead-score.hot{color:#16a34a}
+.lead-score.warm{color:#d97706}
+
+/* SCHEDULING */
+.sched-phone .cal-header{background:#0f766e;color:#fff;padding:8px 10px;font-size:11px;font-weight:500;display:flex;align-items:center;gap:6px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;padding:6px 8px;font-size:8px;text-align:center}
+.cal-grid .day-h{color:#999;font-weight:500;padding:3px 0}
+.cal-grid .day{padding:4px 0;border-radius:4px;color:#333}
+.cal-grid .day.today{background:#0f766e;color:#fff;font-weight:600}
+.cal-grid .day.has-event{position:relative}
+.cal-grid .day.has-event::after{content:'';position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#0f766e}
+.cal-grid .day.off{color:#ccc}
+.cal-slots{padding:6px 8px;flex:1;overflow:hidden}
+.cal-slot{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:6px;margin-bottom:4px;font-size:8.5px}
+.cal-slot.booked{background:#f0fdfa;border-left:3px solid #0f766e}
+.cal-slot.open{background:#f9fafb;border-left:3px solid #d1d5db}
+.cal-slot .slot-time{font-weight:600;color:#1a1a1a;min-width:34px}
+.cal-slot .slot-name{color:#555}
+.cal-slot .slot-badge{margin-left:auto;font-size:7px;padding:2px 6px;border-radius:10px;font-weight:500}
+.cal-slot .slot-badge.confirmed{background:#dcfce7;color:#16a34a}
+.cal-slot .slot-badge.auto{background:#e0f2fe;color:#0284c7}
+.cal-slot .slot-badge.avail{background:#f3f4f6;color:#999}
+
+/* BROWSER */
+.browser{width:400px;border-radius:10px;overflow:hidden;background:#fff;border:1px solid #e0e0e0;box-shadow:0 8px 30px rgba(0,0,0,0.08);flex-shrink:0}
+.browser-bar{background:#f1f1f1;padding:7px 12px;display:flex;align-items:center;gap:8px}
+.dots3{display:flex;gap:5px}
+.dots3 span{width:9px;height:9px;border-radius:50%}
+.browser-url{flex:1;background:#fff;border-radius:5px;padding:4px 10px;font-size:10px;color:#555;border:0.5px solid #ddd;display:flex;align-items:center;gap:4px}
+.browser-url .lock{color:#28c840;font-size:10px}
+.site-body{height:340px;overflow:hidden}
+.hero{padding:24px 20px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.35)}
+.hero-content{position:relative;z-index:1}
+.hero h4{font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:-0.3px}
+.hero p{font-size:10px;opacity:0.85;margin-bottom:12px}
+.hero-btn{display:inline-block;background:#e94560;color:#fff;font-size:10px;padding:6px 18px;border-radius:5px;font-weight:500;text-decoration:none}
+.prods{padding:14px 16px}
+.prods h5{font-size:10px;color:#888;margin-bottom:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+.prods-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.prod-card{border-radius:8px;overflow:hidden;border:0.5px solid #eee;background:#fff}
+.prod-img{height:70px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f9f9f9}
+.prod-img img{width:100%;height:100%;object-fit:cover}
+.prod-info{padding:6px 8px}
+.prod-name{font-size:9px;color:#333;font-weight:500}
+.prod-price{font-size:10px;color:#e94560;font-weight:600;margin-top:2px}
+.site-metrics{display:flex;gap:8px;padding:10px 16px}
+.site-m{flex:1;background:#f9fafb;border-radius:6px;padding:8px;text-align:center}
+.site-m .n{font-size:14px;font-weight:600;color:#1a1a2e}
+.site-m .l{font-size:7.5px;color:#999;margin-top:1px}
+
+/* APP */
+.app-top{background:#4f46e5;color:#fff;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:500}
+.app-search{margin:8px 10px;background:#f3f4f6;border-radius:8px;padding:7px 10px;font-size:9px;color:#9ca3af;display:flex;align-items:center;gap:5px}
+.app-search svg{width:12px;height:12px;fill:#9ca3af}
+.app-list{flex:1;padding:0 10px;overflow:hidden}
+.app-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:0.5px solid #f3f4f6}
+.app-row-img{width:34px;height:34px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#f3f4f6}
+.app-row-img img{width:100%;height:100%;object-fit:cover}
+.app-row-info{flex:1}
+.app-row-title{font-size:10px;font-weight:500;color:#1a1a1a}
+.app-row-sub{font-size:8px;color:#9ca3af;margin-top:1px}
+.app-row-qty{font-size:11px;font-weight:600;color:#4f46e5}
+.app-row-qty.low{color:#dc2626}
+.app-nav{display:flex;justify-content:space-around;padding:8px 0;border-top:0.5px solid #f0f0f0}
+.app-tab{text-align:center;font-size:7px;color:#9ca3af}
+.app-tab.on{color:#4f46e5}
+.app-tab svg{width:16px;height:16px;display:block;margin:0 auto 2px;fill:currentColor}
+
+/* DASHBOARD */
+.dash{width:420px;border-radius:10px;overflow:hidden;background:#fff;border:1px solid #e0e0e0;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+.dash-head{background:#0f172a;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:500}
+.dash-logo{width:26px;height:26px;border-radius:6px;background:#4f46e5;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600}
+.dash-main{padding:14px}
+.dash-title{font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:10px}
+.dash-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.dash-card{background:#f9fafb;border-radius:8px;padding:10px;text-align:center}
+.dash-card .v{font-size:17px;font-weight:600}
+.dash-card .lb{font-size:8px;color:#999;margin-top:2px}
+.dash-card:nth-child(1) .v{color:#059669}
+.dash-card:nth-child(2) .v{color:#4f46e5}
+.dash-card:nth-child(3) .v{color:#d97706}
+.chart-label{font-size:9px;color:#666;font-weight:500;margin-bottom:6px}
+.chart-area{height:80px;display:flex;align-items:flex-end;gap:6px}
+.bar{flex:1;border-radius:4px 4px 0 0;position:relative}
+.bar .bl{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);font-size:7px;color:#999}
+.bar.hi{background:#4f46e5}
+.bar.lo{background:#e0e7ff}
+
+/* NAV */
+.nav{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:1.25rem}
+.nav-btn{width:38px;height:38px;border-radius:50%;border:1px solid #ddd;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;color:#555}
+.nav-btn:hover{background:#f5f4f0;border-color:#bbb}
+.nav-btn svg{width:18px;height:18px;fill:currentColor}
+.pips{display:flex;gap:6px}
+.pip{width:8px;height:8px;border-radius:50%;background:#ddd;cursor:pointer;transition:all 0.3s}
+.pip.on{background:#1a1a1a;width:22px;border-radius:4px}
+.counter{position:absolute;bottom:14px;right:14px;font-size:10px;color:#aaa;z-index:2}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="stage" id="stage">
+
+<!-- SLIDE 0: WhatsApp Atendimento -->
+<div class="slide on" data-i="0">
+<span class="label"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.11.546 4.093 1.504 5.818L0 24l6.335-1.469A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.63-.516-5.13-1.412l-.368-.218-3.814.884.952-3.675-.24-.38A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Atendimento WhatsApp</span>
+<div class="phone">
+<div class="phone-notch"></div>
+<div class="phone-screen">
+<div class="wa-top"><div class="wa-avatar">ST</div><div><div class="wa-name">Simplifica Bot</div><div class="wa-status">online</div></div></div>
+<div class="wa-chat">
+<div class="wa-msg in">Oi! Vi o anúncio no Instagram. Quais planos vocês têm?<div class="wa-time">10:31</div></div>
+<div class="wa-msg out">Olá, Maria! Que bom ter você aqui 😊<br><br>Temos 3 planos:<div class="wa-time">10:31 <span class="wa-check">✓✓</span></div></div>
+<div class="wa-msg out"><b>1. Básico</b> — R$ 49/mês<br><b>2. Pro</b> — R$ 99/mês<br><b>3. Premium</b> — R$ 199/mês<br><br>Qual te interessa?<div class="wa-time">10:31 <span class="wa-check">✓✓</span></div></div>
+<div class="wa-msg in">Quero o Pro!<div class="wa-time">10:33</div></div>
+<div class="wa-msg out">Ótima escolha! ✅<br><br>Gerando seu link de pagamento...<br><br>💳 <b>pag.simplifica.com/pro</b><br><br>Prontinho! Qualquer dúvida, só chamar.<div class="wa-time">10:33 <span class="wa-check">✓✓</span></div></div>
+</div>
+<div class="wa-bar"><div class="wa-field">Mensagem</div><div class="wa-send"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></div></div>
+</div>
+</div>
+<div class="info">
+<h3>Atendimento WhatsApp</h3>
+<p>Agente de IA responde com cardápio, anota pedidos e confirma clientes — sem intervenção humana. Escala para humano quando necessário.</p>
+<div class="tags"><span class="tag green">N8n</span><span class="tag blue">IA generativa</span><span class="tag coral">Pagamentos</span></div>
+</div>
+</div>
+
+<!-- SLIDE 1: Resposta Automática E-mails -->
+<div class="slide" data-i="1">
+<span class="label"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Resposta automática a e-mails</span>
+<div class="email-app">
+<div class="email-topbar"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Caixa de Entrada — SimplificaMail</div>
+<div class="email-list">
+<div class="email-row unread">
+<div class="email-dot blue"></div>
+<div class="email-from">João Mendes</div>
+<div class="email-subject">Orçamento site</div>
+<div class="email-preview">— Preciso de um orçamento para...</div>
+<div class="email-tag auto">✓ Auto-resposta</div>
+<div class="email-time">09:14</div>
+</div>
+<div class="email-row unread">
+<div class="email-dot blue"></div>
+<div class="email-from">Ana Costa</div>
+<div class="email-subject">Dúvida sobre plano Pro</div>
+<div class="email-preview">— Gostaria de saber se o plano...</div>
+<div class="email-tag auto">✓ Auto-resposta</div>
+<div class="email-time">09:02</div>
+</div>
+<div class="email-row">
+<div class="email-dot green"></div>
+<div class="email-from">Carlos Lima</div>
+<div class="email-subject">Re: Proposta comercial</div>
+<div class="email-preview">— Aceito a proposta, quando...</div>
+<div class="email-tag pend">⚡ Escalado</div>
+<div class="email-time">08:45</div>
+</div>
+<div class="email-row">
+<div class="email-dot gray"></div>
+<div class="email-from">Marta Souza</div>
+<div class="email-subject">Suporte técnico #482</div>
+<div class="email-preview">— O sistema está apresentando...</div>
+<div class="email-tag sent">↗ Encaminhado</div>
+<div class="email-time">08:30</div>
+</div>
+<div class="email-row">
+<div class="email-dot gray"></div>
+<div class="email-from">Pedro Alves</div>
+<div class="email-subject">Nota fiscal ref. junho</div>
+<div class="email-preview">— Segue em anexo a NF referente...</div>
+<div class="email-tag auto">✓ Auto-resposta</div>
+<div class="email-time">08:12</div>
+</div>
+<div class="email-row">
+<div class="email-dot gray"></div>
+<div class="email-from">Lucia Ferreira</div>
+<div class="email-subject">Cancelamento de serviço</div>
+<div class="email-preview">— Gostaria de cancelar meu...</div>
+<div class="email-tag pend">⚡ Escalado</div>
+<div class="email-time">07:58</div>
+</div>
+</div>
+</div>
+<div class="info" style="max-width:200px">
+<h3>Respostas automáticas</h3>
+<p>A IA identifica e-mails, analisa o contexto e envia respostas personalizadas. Escala para humano quando necessário.</p>
+<div class="tags"><span class="tag blue">GPT</span><span class="tag green">SMTP</span><span class="tag purple">Classificação</span></div>
+</div>
+</div>
+
+<!-- SLIDE 2: Qualificação de Leads -->
+<div class="slide" data-i="2">
+<span class="label"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Qualificação de leads</span>
+<div class="lead-panel">
+<div class="lead-header"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3z"/></svg>Funil de leads — Simplifica CRM</div>
+<div class="lead-body">
+<div class="lead-funnel">
+<div class="funnel-step f-new"><div class="num">24</div><div><div class="lbl">Novos contatos</div><div class="desc">Guiados por perguntas da IA automaticamente</div></div></div>
+<div class="funnel-step f-qual"><div class="num">15</div><div><div class="lbl">Qualificados</div><div class="desc">Classificados e com resumo completo</div></div></div>
+<div class="funnel-step f-ready"><div class="num">8</div><div><div class="lbl">Prontos para venda</div><div class="desc">Encaminhados ao time comercial</div></div></div>
+</div>
+<div style="font-size:9px;color:#888;font-weight:500;margin-bottom:6px">Últimos leads qualificados</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div class="lead-card"><div class="lead-avatar" style="background:#7c3aed">RM</div><div class="lead-info"><div class="lead-name">Roberto Matos</div><div class="lead-meta">E-commerce · Orçamento alto · Respondeu 4 perguntas</div></div><div class="lead-score hot">92</div></div>
+<div class="lead-card"><div class="lead-avatar" style="background:#0284c7">FS</div><div class="lead-info"><div class="lead-name">Fernanda Silva</div><div class="lead-meta">Clínica odontológica · Agendamento · 3 perguntas</div></div><div class="lead-score hot">85</div></div>
+<div class="lead-card"><div class="lead-avatar" style="background:#d97706">LC</div><div class="lead-info"><div class="lead-name">Lucas Campos</div><div class="lead-meta">Restaurante · Cardápio digital · 2 perguntas</div></div><div class="lead-score warm">61</div></div>
+</div>
+</div>
+</div>
+<div class="info" style="max-width:190px">
+<h3>Qualificação de leads</h3>
+<p>Novos contatos são guiados por perguntas da IA, classificados automaticamente e encaminhados ao time de vendas com resumo completo.</p>
+<div class="tags"><span class="tag purple">IA</span><span class="tag blue">CRM</span><span class="tag green">Score</span></div>
+</div>
+</div>
+
+<!-- SLIDE 3: Agendamento Automático -->
+<div class="slide" data-i="3">
+<span class="label"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>Agendamento automático</span>
+<div class="phone sched-phone">
+<div class="phone-notch"></div>
+<div class="phone-screen">
+<div class="cal-header"><svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg> Agenda — Julho 2026</div>
+<div class="cal-grid">
+<div class="day-h">D</div><div class="day-h">S</div><div class="day-h">T</div><div class="day-h">Q</div><div class="day-h">Q</div><div class="day-h">S</div><div class="day-h">S</div>
+<div class="day off">28</div><div class="day off">29</div><div class="day off">30</div><div class="day">1</div><div class="day">2</div><div class="day has-event">3</div><div class="day">4</div>
+<div class="day">5</div><div class="day today">6</div><div class="day has-event">7</div><div class="day has-event">8</div><div class="day">9</div><div class="day has-event">10</div><div class="day">11</div>
+<div class="day">12</div><div class="day">13</div><div class="day has-event">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
+</div>
+<div style="padding:4px 8px;font-size:8.5px;color:#666;font-weight:500;border-top:0.5px solid #eee;margin-top:2px">Hoje — 6 de julho</div>
+<div class="cal-slots">
+<div class="cal-slot booked"><div class="slot-time">09:00</div><div class="slot-name">Ana Costa — Corte + Escova</div><div class="slot-badge confirmed">Confirmado</div></div>
+<div class="cal-slot booked"><div class="slot-time">10:30</div><div class="slot-name">Maria Lima — Manicure</div><div class="slot-badge auto">Via WhatsApp</div></div>
+<div class="cal-slot booked"><div class="slot-time">11:00</div><div class="slot-name">Julia Ramos — Hidratação</div><div class="slot-badge auto">Via WhatsApp</div></div>
+<div class="cal-slot open"><div class="slot-time">13:00</div><div class="slot-name">Horário disponível</div><div class="slot-badge avail">Livre</div></div>
+<div class="cal-slot booked"><div class="slot-time">14:30</div><div class="slot-name">Carla Dias — Coloração</div><div class="slot-badge confirmed">Confirmado</div></div>
+<div class="cal-slot open"><div class="slot-time">16:00</div><div class="slot-name">Horário disponível</div><div class="slot-badge avail">Livre</div></div>
+</div>
+</div>
+</div>
+<div class="info">
+<h3>Agendamento automático</h3>
+<p>Clientes enviam mensagem pedindo horário. A IA verifica a agenda, sugere horários disponíveis e confirma — tudo automaticamente.</p>
+<div class="tags"><span class="tag teal">Calendário</span><span class="tag blue">WhatsApp</span><span class="tag coral">Lembretes</span></div>
+</div>
+</div>
+
+<!-- SLIDE 4: App Estoque -->
+<div class="slide" data-i="4">
+<span class="label"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>Aplicativo</span>
+<div class="phone">
+<div class="phone-notch"></div>
+<div class="phone-screen">
+<div class="app-top"><span>📦 MeuEstoque</span><span style="font-size:9px;opacity:0.8">Maria Silva</span></div>
+<div class="app-search"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>Buscar produto...</div>
+<div class="app-list">
+<div class="app-row">
+<div class="app-row-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=80&h=80&fit=crop" alt="Tênis"></div>
+<div class="app-row-info"><div class="app-row-title">Tênis Runner X</div><div class="app-row-sub">SKU: TRX-001 · Há 2h</div></div>
+<div class="app-row-qty">48 un</div>
+</div>
+<div class="app-row">
+<div class="app-row-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=80&h=80&fit=crop" alt="Camiseta"></div>
+<div class="app-row-info"><div class="app-row-title">Camiseta Dry Fit</div><div class="app-row-sub">SKU: CDF-042 · Há 5h</div></div>
+<div class="app-row-qty">126 un</div>
+</div>
+<div class="app-row">
+<div class="app-row-img"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=80&h=80&fit=crop" alt="Bolsa"></div>
+<div class="app-row-info"><div class="app-row-title">Bolsa Couro Mini</div><div class="app-row-sub">SKU: BCM-018 · Há 1d</div></div>
+<div class="app-row-qty low">3 un</div>
+</div>
+<div class="app-row">
+<div class="app-row-img"><img src="https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=80&h=80&fit=crop" alt="Boné"></div>
+<div class="app-row-info"><div class="app-row-title">Boné Trucker</div><div class="app-row-sub">SKU: BNT-007 · Há 3h</div></div>
+<div class="app-row-qty">67 un</div>
+</div>
+<div class="app-row">
+<div class="app-row-img"><img src="https://images.unsplash.com/photo-1603487742131-4160ec999306?w=80&h=80&fit=crop" alt="Chinelo"></div>
+<div class="app-row-info"><div class="app-row-title">Chinelo Comfort</div><div class="app-row-sub">SKU: CHC-033 · Há 6h</div></div>
+<div class="app-row-qty">215 un</div>
+</div>
+</div>
+<div class="app-nav">
+<div class="app-tab on"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1 0-2 1-2 2v3c0 .7.4 1.3 1 1.7V20c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8.7c.6-.4 1-1 1-1.7V4c0-1-1-2-2-2zm-1 18H5V9h14v11zm1-13H4V4h16v3z"/></svg>Estoque</div>
+<div class="app-tab"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>Vendas</div>
+<div class="app-tab"><svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>Alertas</div>
+<div class="app-tab"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg>Config</div>
+</div>
+</div>
+</div>
+<div class="info">
+<h3>App de gestão</h3>
+<p>Controle de estoque na palma da mão. Alertas de estoque baixo, histórico de vendas e relatórios automáticos — tudo em tempo real.</p>
+<div class="tags"><span class="tag blue">React Native</span><span class="tag green">API REST</span><span class="tag coral">Push alerts</span></div>
+</div>
+</div>
+
+<!-- SLIDE 5: E-commerce -->
+<div class="slide" data-i="5">
+<span class="label"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 015.08 16zm2.95-8H5.08a7.99 7.99 0 014.33-3.56A15.65 15.65 0 008.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>E-commerce</span>
+<div class="browser">
+<div class="browser-bar">
+<div class="dots3"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+<div class="browser-url"><span class="lock">🔒</span> modafitstore.com.br</div>
+</div>
+<div class="site-body">
+<div class="hero">
+<div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80')"></div>
+<div class="hero-content"><h4>Moda Fit Store</h4><p>Vista-se bem. Sinta-se melhor.</p><a href="#" class="hero-btn">Ver coleção nova →</a></div>
+</div>
+<div class="prods">
+<h5>Mais vendidos</h5>
+<div class="prods-grid">
+<div class="prod-card"><div class="prod-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=140&fit=crop" alt="Tênis"></div><div class="prod-info"><div class="prod-name">Tênis Runner X</div><div class="prod-price">R$ 289,90</div></div></div>
+<div class="prod-card"><div class="prod-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=140&fit=crop" alt="Camiseta"></div><div class="prod-info"><div class="prod-name">Camiseta Dry Fit</div><div class="prod-price">R$ 79,90</div></div></div>
+<div class="prod-card"><div class="prod-img"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&h=140&fit=crop" alt="Bolsa"></div><div class="prod-info"><div class="prod-name">Bolsa Couro Mini</div><div class="prod-price">R$ 349,90</div></div></div>
+</div>
+</div>
+<div class="site-metrics">
+<div class="site-m"><div class="n">4.8 ★</div><div class="l">Avaliação</div></div>
+<div class="site-m"><div class="n">2.4k</div><div class="l">Pedidos/mês</div></div>
+<div class="site-m"><div class="n">24h</div><div class="l">Envio rápido</div></div>
+</div>
+</div>
+</div>
+<div class="info" style="max-width:180px;margin-left:1.5rem">
+<h3>Loja online</h3>
+<p>E-commerce completo com checkout, gestão de pedidos e integração com gateways de pagamento.</p>
+<div class="tags"><span class="tag blue">Next.js</span><span class="tag green">Stripe</span><span class="tag coral">SEO</span></div>
+</div>
+</div>
+
+<!-- SLIDE 6: Dashboard / Relatórios -->
+<div class="slide" data-i="6">
+<span class="label"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>Relatórios automáticos</span>
+<div class="dash">
+<div class="dash-head"><div class="dash-logo">ST</div><span>Simplifica Analytics</span><span style="margin-left:auto;font-size:9px;opacity:0.6">Jul 2026</span></div>
+<div class="dash-main">
+<div class="dash-title">Visão geral do mês</div>
+<div class="dash-cards">
+<div class="dash-card"><div class="v">R$ 47k</div><div class="lb">Faturamento</div></div>
+<div class="dash-card"><div class="v">1.284</div><div class="lb">Pedidos</div></div>
+<div class="dash-card"><div class="v">89%</div><div class="lb">Satisfação</div></div>
+</div>
+<div class="chart-label">Vendas por dia da semana</div>
+<div class="chart-area" id="chart"></div>
+<div style="margin-top:20px;padding:8px 10px;background:#f0fdf4;border-radius:6px;border-left:3px solid #16a34a;font-size:9px;color:#333;line-height:1.5">
+<b style="color:#16a34a">📊 Resumo diário enviado às 18h</b><br>
+Vendas, estoque e pedidos consolidados via WhatsApp e e-mail para o gestor.
+</div>
+</div>
+</div>
+<div class="info" style="max-width:160px;margin-left:1rem">
+<h3>Relatórios automáticos</h3>
+<p>Ao final do dia, um agente coleta dados de vendas, estoque e pedidos e envia um resumo por WhatsApp ou e-mail.</p>
+<div class="tags"><span class="tag blue">React</span><span class="tag green">Recharts</span></div>
+</div>
+</div>
+
+</div>
+
+<div class="nav">
+<div class="nav-btn" id="prev"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></div>
+<div class="pips" id="pips"></div>
+<div class="nav-btn" id="next"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+</div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const pipsC = document.getElementById('pips');
+const N = slides.length;
+let cur = 0, timer;
+
+for (let i = 0; i < N; i++) {
+  const p = document.createElement('div');
+  p.className = 'pip' + (i === 0 ? ' on' : '');
+  p.onclick = () => go(i);
+  pipsC.appendChild(p);
+}
+
+function go(i) {
+  if (i === cur) return;
+  slides[cur].classList.add('exit');
+  slides[cur].classList.remove('on');
+  setTimeout(() => slides.forEach(s => s.classList.remove('exit')), 600);
+  cur = ((i % N) + N) % N;
+  slides[cur].classList.add('on');
+  document.querySelectorAll('.pip').forEach((p, j) => {
+    p.className = 'pip' + (j === cur ? ' on' : '');
+  });
+  resetTimer();
+}
+
+document.getElementById('prev').onclick = () => go(cur - 1);
+document.getElementById('next').onclick = () => go(cur + 1);
+
+function resetTimer() { clearInterval(timer); timer = setInterval(() => go(cur + 1), 4500); }
+resetTimer();
+
+// Dashboard chart
+const bars = [65, 45, 80, 70, 95, 55, 40];
+const days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+const chartEl = document.getElementById('chart');
+bars.forEach((h, i) => {
+  const b = document.createElement('div');
+  b.className = 'bar ' + (i === 4 ? 'hi' : 'lo');
+  b.style.height = h + '%';
+  b.innerHTML = '<div class="bl">' + days[i] + '</div>';
+  chartEl.appendChild(b);
+});
+</script>
+</body>
+</html>
