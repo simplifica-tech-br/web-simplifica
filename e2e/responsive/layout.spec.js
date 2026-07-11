@@ -2,9 +2,18 @@ import { test, expect } from '@playwright/test'
 
 const expectedColumnsByProject = {
   'Mobile Chrome': 1,
+  'Mobile Chrome Small': 1,
   'Mobile Safari': 1,
   'Tablet': 2,
   'Desktop Chrome': 4,
+}
+
+const expectedSitesColumnsByProject = {
+  'Mobile Chrome': 1,
+  'Mobile Chrome Small': 1,
+  'Mobile Safari': 1,
+  'Tablet': 2,
+  'Desktop Chrome': 2,
 }
 
 test.describe('Breakpoints de layout (5.2 Responsividade)', () => {
@@ -15,6 +24,15 @@ test.describe('Breakpoints de layout (5.2 Responsividade)', () => {
     const columnCount = await grid.evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length)
 
     expect(columnCount).toBe(expectedColumnsByProject[testInfo.project.name])
+  })
+
+  test('grid de sites usa o número de colunas esperado para o dispositivo', async ({ page }, testInfo) => {
+    await page.goto('/#sites')
+
+    const grid = page.locator('#sites .grid--2')
+    const columnCount = await grid.evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length)
+
+    expect(columnCount).toBe(expectedSitesColumnsByProject[testInfo.project.name])
   })
 
   test('hero muda de coluna única (mobile) para lado a lado (desktop)', async ({ page }, testInfo) => {
